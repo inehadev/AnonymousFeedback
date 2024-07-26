@@ -1,6 +1,4 @@
 import mongoose , {Schema , Document} from 'mongoose';
-import { Interface } from 'readline';
-
 export interface Message extends Document {
     content :string , 
     createdAt :Date
@@ -28,14 +26,14 @@ export interface User extends Document {
     verifyCodeExpiry:Date,
     isverified:boolean,
     isAcceptingMessage:boolean,
-    message :Message[]
+    messages :Message[]
 
 }
 
 const UserSchema :Schema <User> = new Schema ({
     username:{
         type:String,
-        require:[true,"Username is Required"],
+        required:[true,"Username is Required"],
         trim:true,
         unique:true
     },
@@ -51,11 +49,11 @@ const UserSchema :Schema <User> = new Schema ({
     },
     verifyCode:{
         type:String,
-        require:[true,"verifyCode is Required"],
+        required:[true,"verifyCode is Required"],
     },
     verifyCodeExpiry:{
         type:Date,
-        require:[true,"verifyCode is Required"],
+        required:[true,"verifyCode is Required"],
     },
     
     isverified:{
@@ -65,6 +63,10 @@ const UserSchema :Schema <User> = new Schema ({
     isAcceptingMessage:{
         type:Boolean,
         default:true,
-    }
+    },
+    messages:[MessageSchema]
 
 })
+
+const UserModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User" , UserSchema)
+export default UserModel;
