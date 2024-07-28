@@ -106,7 +106,7 @@ const page = () => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              {/* <FormLabel className="ml-[20%]">Username</FormLabel> */}
               <FormControl>
                 <Input placeholder="username" {...field}
                 onChangeCapture={(e)=>{
@@ -114,9 +114,7 @@ const page = () => {
                   setusername((e.target as HTMLInputElement).value)
                 }} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              
               <FormMessage />
             </FormItem>
           )}
@@ -127,14 +125,12 @@ const page = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              {/* <FormLabel className="ml-[20%]" >Email</FormLabel> */}
               <FormControl>
                 <Input placeholder="Email" {...field}
         />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+           
               <FormMessage />
             </FormItem>
           )}
@@ -146,14 +142,12 @@ const page = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              {/* <FormLabel className="ml-[20%]">Password</FormLabel> */}
               <FormControl>
                 <Input type="password" placeholder="password" {...field}
                  />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
+              
               <FormMessage />
             </FormItem>
           )}
