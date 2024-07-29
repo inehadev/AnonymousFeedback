@@ -42,7 +42,7 @@ export async function POST(request: Request) {
                 await existinguserByEmail.save();
             }
 
-        } else {
+        } 
             const hashPassword = await bcrypt.hash(password, 10)
             const expiryDate = new Date()
             expiryDate.setHours(expiryDate.getHours() + 1)
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
             const res = await newUser.save();
             console.log('New User Created:', res);
 
-        }
+        
 
         //send verification email
         const emailResponse = await sendVerificationEmail(
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
         }
         return NextResponse.json({
             success: true,
-            message: "User registered successfully.Please verify Yout Email"
+            message: "User registered successfully.Please verify Your Email"
 
         }, { status: 201 })
 

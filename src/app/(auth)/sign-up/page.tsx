@@ -6,7 +6,7 @@ import {  useForm } from "react-hook-form"
 import * as z from "zod"
 import  Link from "next/link"
 import { useEffect, useState } from "react"
-import {useDebounceValue} from 'usehooks-ts'
+import {useDebounceCallback, useDebounceValue} from 'usehooks-ts'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import { signUpSchema } from "@/schemas/signUpSchema"
@@ -23,7 +23,7 @@ const page = () => {
   const[loader, setloader]=useState(false)
   const[submit , setsubmit]=useState(false)
 
-   const debouncedUsername=useDebounceValue(username  , 300)
+   const debounced=useDebounceCallback(setusername , 500)
    const {toast}=useToast();
    const router =useRouter()
 
@@ -40,7 +40,7 @@ const page = () => {
 
    useEffect(()=>{
     const checkUsernameunique=async()=>{
-      if(debouncedUsername){
+      if(username){
         setloader(true)
         setusernameMessage('')
 
@@ -65,7 +65,8 @@ const page = () => {
 
     checkUsernameunique()
 
-   },[debouncedUsername])
+   },[username])
+
 
    const onSubmit =  async(data: z.infer<typeof signUpSchema>)=>{
     setsubmit(true);
@@ -95,23 +96,23 @@ const page = () => {
   return (
     
       <div className="flex justify-center items-center
-      min-h-screen bg-grau-100">
+      min-h-screen bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-8 bg-white
         rounded-lg shadow-sm">
-          <div className="text-center">
-            <Form {...form}>
+          <div className="text-center text-3xl">Anonymous Feedback</div>
+            <Form {...form} >
 <form onSubmit={form.handleSubmit(onSubmit) }className="space-y-6" >
             <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel className="ml-[20%]">Username</FormLabel> */}
+              <FormLabel className="">Username</FormLabel>
               <FormControl>
                 <Input placeholder="username" {...field}
                 onChangeCapture={(e)=>{
                   field.onChange(e)
-                  setusername((e.target as HTMLInputElement).value)
+                  debounced((e.target as HTMLInputElement).value)
                 }} />
               </FormControl>
               
@@ -125,7 +126,7 @@ const page = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel className="ml-[20%]" >Email</FormLabel> */}
+              <FormLabel className="" >Email</FormLabel>
               <FormControl>
                 <Input placeholder="Email" {...field}
         />
@@ -142,7 +143,7 @@ const page = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              {/* <FormLabel className="ml-[20%]">Password</FormLabel> */}
+              <FormLabel className="">Password</FormLabel>
               <FormControl>
                 <Input type="password" placeholder="password" {...field}
                  />
@@ -152,7 +153,7 @@ const page = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={loader}>
+        <Button type="submit" disabled={loader} className="text-center ml-[40%]  px-2">
           {
             loader ? (
               <>
@@ -173,7 +174,7 @@ const page = () => {
             </div>
           </div>
         </div>
-      </div>
+     
     
   )
 }
