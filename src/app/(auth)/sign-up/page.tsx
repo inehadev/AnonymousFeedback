@@ -76,7 +76,8 @@ const page = () => {
       title:'Success',
       description:response.data.message
     })
-    router.replace(`/verify/${username}`)
+    router.replace(`/verify/${data.username}`);
+
     setsubmit(false);
     } catch (error) {
       console.error("Error in SignUp integration" , error)
@@ -84,7 +85,7 @@ const page = () => {
       const axiosError=error as AxiosError<ApiResponse>
        let errorMessage= axiosError.response?.data.message
        toast({
-        title:'Sing-up Failed',
+        title:'Sign-up Failed',
         description:errorMessage,
         variant:"destructive"
        }) 
