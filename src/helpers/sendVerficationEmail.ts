@@ -11,14 +11,15 @@ export async function sendVerificationEmail(
 
     try {
            
-        await resend.emails.send({
+       const response= await resend.emails.send({
             from: ' AAnonymous, <n988420@gmail.com>',
 
-            to:['7087330257n@gmail.com'],
+            to:[email],
             subject: 'Anonymous verification code ',
             react: VerificationEmail({username  , otp:verifyCode}),
            
           });
+          console.log("Email send response:", response);
           console.log("verification email is sent" )
           return { success: true, message: 'Verification email sent' };
           

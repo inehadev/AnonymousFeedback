@@ -13,7 +13,7 @@ import {Form, FormField  ,FormItem , FormControl , FormDescription , FormLabel, 
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
-const verify= () => {
+const Verify= () => {
     const router=useRouter();
     const param = useParams<{username:string}>();
     const {toast}=useToast()
@@ -38,8 +38,7 @@ const verify= () => {
            router.replace('sign-in')
 
            toast({
-            title
-:"Sucess"           })
+            title:"Sucess"           })
             
         } catch (error) {
             console.error("Error in verifyfying code", error);
@@ -84,4 +83,4 @@ const verify= () => {
   )
 }
 
-export default verify
+export default Verify
