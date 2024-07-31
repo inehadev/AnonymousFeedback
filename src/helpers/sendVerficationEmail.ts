@@ -12,7 +12,7 @@ export async function sendVerificationEmail(
     try {
            
        const response= await resend.emails.send({
-            from: ' AAnonymous, <n988420@gmail.com>',
+            from: 'Acme <onboarding@resend.dev>',
 
             to:[email],
             subject: 'Anonymous verification code ',
