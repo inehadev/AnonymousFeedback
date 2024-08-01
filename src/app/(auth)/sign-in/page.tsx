@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import {  useForm } from "react-hook-form"
 import * as z from "zod"
 import {  useState } from "react"
-import {useDebounceCallback} from 'usehooks-ts'
 import { useToast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import { signInSchema } from "@/schemas/signInSchema"
@@ -37,23 +36,26 @@ const Page = () => {
 
 
    const onSubmit =  async(data: z.infer<typeof signInSchema>)=>{
+    setloader(true)
+
     const result = await signIn('credentials' , {
         redirect:false,
         identifier:data.identifier,
         password:data.password
       })
-      if(result?.error){
-        toast({
-          title:"Login Faild",
-          description:"Incorrect username or password",
-          variant:"destructive"
-        })
-        if(result?.url){
-          router.replace('/dashboard')
-
-        }
-        }
-
+   setloader(false);
+   console.log(result);
+      
+   if (result?.error) {
+    toast({
+      title: "Login Failed",
+      description: "Incorrect username or password",
+      variant: "destructive",
+    });
+  } else  {
+    
+    router.replace('/dashboard');
+  } 
 
       }
     

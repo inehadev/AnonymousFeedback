@@ -17,10 +17,10 @@ import  UserModel  from "@/model/UserModel";
             
 
         }
-        console.log("user found")
+        
         const isvalidCode = user.verifyCode==code
         const isCodeNotExpired=new Date(user.verifyCodeExpiry)> new Date()
-        console.log("still not expired")
+        
 
         if(isvalidCode && isCodeNotExpired){
             user.isverified=true;

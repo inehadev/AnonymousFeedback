@@ -38,7 +38,8 @@ const Verify= () => {
            router.replace('sign-in')
 
            toast({
-            title:"Sucess"           })
+            title:"Sucess" })
+            router.replace('/dashboard')
             
         } catch (error) {
             console.error("Error in verifyfying code", error);
