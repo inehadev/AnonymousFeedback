@@ -17,15 +17,15 @@ import MessageCard from '@/components/MessageCard'
 
 const DashBoard = () => {
 
-  const {toast}=useToast()
-  const[messages, setmessages] = useState<Message[]>([])
+  const { toast } = useToast()
+  const [messages, setmessages] = useState<Message[]>([])
   const [loading, setloading] = useState(false);
   const [switchload, setswitchload] = useState(false)
   const { data: session } = useSession()
 
 
-  const handleDeleteMessage=(messageId:string)=>{
-    setmessages(messages.filter((message)=>message._id != messageId))
+  const handleDeleteMessage = (messageId: string) => {
+    setmessages(messages.filter((message) => message._id != messageId))
   }
 
 
@@ -46,9 +46,9 @@ const DashBoard = () => {
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title:'Error',
-        description:axiosError.response?.data.message || "Failed to Fetch message" , 
-        variant:"destructive"
+        title: 'Error',
+        description: axiosError.response?.data.message || "Failed to Fetch message",
+        variant: "destructive"
       })
 
     } finally {
@@ -60,21 +60,21 @@ const DashBoard = () => {
     setloading(true)
     setswitchload(false)
     try {
-      const res = await axios.get<ApiResponse>('/api/get-message')
-       setmessages(res.data.messages || [])
-       if(refresh){
-      toast({
-        title:"Refresh Messages",
-        description:"Showing Latest messages",
-      })
-       }
+      const res = await axios.get<ApiResponse>('/api/get-messags')
+      setmessages(res.data.messages || [])
+      if (refresh) {
+        toast({
+          title: "Refresh Messages",
+          description: "Showing Latest messages",
+        })
+      }
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title:'Error',
-        description:axiosError.response?.data.message || "Failed to Fetch message" , 
-        variant:"destructive"
+        title: 'Error',
+        description: axiosError.response?.data.message || "Failed to Fetch message",
+        variant: "destructive"
       })
 
     } finally {
@@ -103,17 +103,17 @@ const DashBoard = () => {
       setValue('acceptMessages', !'acceptMessages')
       toast({
 
-        title:res.data.message,
-        variant:"default"
+        title: res.data.message,
+        variant: "default"
       })
 
 
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title:'Error',
-        description:axiosError.response?.data.message || "Failed to Fetch message" , 
-        variant:"destructive"
+        title: 'Error',
+        description: axiosError.response?.data.message || "Failed to Fetch message",
+        variant: "destructive"
       })
 
     }
@@ -128,8 +128,8 @@ const DashBoard = () => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(profileUrl)
     toast({
-      title:"Url Copied",
-      description:"Profile Url has beeen Copied "
+      title: "Url Copied",
+      description: "Profile Url has beeen Copied "
     })
   }
 
@@ -149,6 +149,7 @@ const DashBoard = () => {
           <Button onClick={copyToClipboard}>Copy</Button>
 
         </div>
+
 
       </div>
 
@@ -188,12 +189,12 @@ const DashBoard = () => {
         )}
       </div>
 
-     
-      </div>
-      )
+
+    </div>
+  )
 }
 
-      export default  DashBoard
+export default DashBoard
 
 
 

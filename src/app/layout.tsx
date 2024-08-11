@@ -23,10 +23,11 @@ export default function RootLayout({
       <body className={inter.className}>
      
       <AuthProvider>
-        <Navbar/>
+        
+       
         {children}
         </AuthProvider>
-         <Toaster />
+         {/* <Toaster /> */}
         
          </body>
   
