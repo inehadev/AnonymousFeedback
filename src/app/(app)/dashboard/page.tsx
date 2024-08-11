@@ -54,7 +54,7 @@ const DashBoard = () => {
     } finally {
       setswitchload(false);
     }
-  }, [setValue])
+  }, [setValue, toast])
 
   const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setloading(true)
