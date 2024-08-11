@@ -82,7 +82,7 @@ const DashBoard = () => {
       setswitchload(false);
     }
 
-  }, [setloading])
+  }, [setloading , toast])
 
   useEffect(() => {
 
