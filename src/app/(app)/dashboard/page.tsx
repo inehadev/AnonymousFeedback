@@ -9,7 +9,7 @@ import { User } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button } from '@react-email/components'
+import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 import { Separator } from '@/components/ui/separator'
 import { Loader2, RefreshCcw } from 'lucide-react'
@@ -146,6 +146,7 @@ const DashBoard = () => {
         <h2 className='text-lg font-semibold mb-2'>Copy Your Unique Link</h2>
         <div className='flex items-center'>
           <input type="text" value={profileUrl} disabled className='input input-bordered w-full p-2 mr-2' />
+          
           <Button onClick={copyToClipboard}>Copy</Button>
 
         </div>
@@ -178,11 +179,12 @@ const DashBoard = () => {
 
       <div className='mt-4 grid grid-cols-1 mf=d:grid-cols-2 gap-6'>
         {messages.length > 0 ? (
-          messages.map((message , index)=>(
-            <MessageCard 
+          messages.map((message )=>(
+            <MessageCard
             key={message._id}
             message={message}
-            onmessageDelete={handleDeleteMessage}/>
+            onmessageDelete={handleDeleteMessage}
+          />
           ))
         ) : (
           <p>No message to display</p>

@@ -32,12 +32,14 @@ export async function POST (request:Request){
    const newMessge = {content,createdAt:new Date()}
    user.messages.push(newMessge as Message)
    await user.save();
+   console.log(user);
 
    return Response.json({
     success:true,
     message:"Message sent successfuly",
 
-},{status:404})
+
+},{status:200})
     
    } catch (error) {
 

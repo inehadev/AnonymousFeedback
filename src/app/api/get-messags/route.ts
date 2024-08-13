@@ -84,7 +84,7 @@ export async function GET(request: Request) {
                 message: "User not found"
             }), { status: 404 });
         }
-
+        console.log(userMessages);
         return new Response(JSON.stringify({
             success: true,
             messages: userMessages.messages
