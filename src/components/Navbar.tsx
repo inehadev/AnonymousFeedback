@@ -16,12 +16,12 @@ const Navbar=()=>{
         <div>
        <nav className="p-4 md:p-6 shadow-md bg-gray-100">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <a  className="text-2xl font-bold mb-4 mb:mb-0"  href="">Anonymous Message</a>
+            <a  className="text-2xl font-bold mb-4 mb:mb-0"  href="/">Anonymous Message</a>
            
             {
                 session ? (
                    <>
-                    <span className="mr-4">Welcome , {user?.username || user?.email}</span>
+                  <Link href="/dashboard"> <span className="mr-4">Welcome , {user?.username || user?.email}</span></Link> 
                     <Button className="w-full md:w-auto" onClick={()=>signOut()}>Logout</Button></>
                 ) : (
                         <Link href='/sign-in'>
