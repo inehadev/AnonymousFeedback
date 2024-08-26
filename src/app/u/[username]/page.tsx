@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useToast } from '@/components/ui/use-toast';
 import { useSession } from 'next-auth/react';
+import { ChevronDown } from 'lucide-react';
 
 type User = {
   username: string;
@@ -31,12 +32,13 @@ const Message = () => {
 
     try {
       const response = await axios.post('/api/send-message', { username, content });
-      if (response.data.success) {
+      console.log(response);
+      if (response.data) {
         toast({
           title: "Success",
           description: "Message sent successfully",
         });
-        console.log(response);
+       console.log(response);
       } else {
         toast({
           title: "Failed",
@@ -104,9 +106,11 @@ const Message = () => {
 
       <div className='m-10 mx-20'>
         <p className='mt-5 opacity-65'>Click on any message below to select it</p>
-        <Button className='mt-5' onClick={suggestMessage} disabled={loading}>
-          {loading ? 'Generating...' : 'Get Messages'}
-        </Button>
+        <div className=' flex '>
+          <p className='opacity-65 mt-5'>Suggest message</p>
+          <div className='mt-5 ml-4' onClick={suggestMessage}>
+          {loading ? 'Generating...':<ChevronDown/>}
+        </div></div>
         <div className='mt-7 grid grid-cols-1 md:grid-cols-2 gap-6'>
           {answer.length > 0 ? (
             answer.map((question, index) => (

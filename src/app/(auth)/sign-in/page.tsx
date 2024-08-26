@@ -44,6 +44,7 @@ const Page = () => {
       })
    setloader(false);
    console.log(result);
+   router.replace('/dashboard');
       
    if (result?.error) {
     toast({
@@ -53,7 +54,7 @@ const Page = () => {
     });
   } else  {
     
-    router.replace('/dashboard');
+    // router.replace('/dashboard');
   } 
 
       }
